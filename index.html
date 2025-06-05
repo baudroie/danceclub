@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baudroie Dance Club - 踊って、つながる社内コミュニティ</title>
+    <meta name="description" content="Baudroie社の社内エンゲージメント向上施策「Baudroie Dance Club」。部署も年次も超えて、リズムでひとつになる社内コミュニティです。">
+    <meta name="keywords" content="社内イベント,ダンス,エンゲージメント,チームビルディング,Baudroie">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'baudroie-orange': '#FF7A00',
+                        'baudroie-orange-light': '#FFF6ED',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'noto': ['Noto Sans JP', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-noto text-gray-800">
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40 z-10"></div>
+    
+        <!-- 背景動画 - 新しい動画を使用 -->
+        <div class="absolute inset-0">
+            <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                class="w-full h-full object-cover"
+                poster="/placeholder.svg?height=1080&width=1920">
+                <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E5%8B%95%E7%94%BB%E7%B4%A0%E6%9D%90%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC%20%281%29-sqE2hy4Foxac6fXwqwcTseQfauj0HC.mp4" type="video/mp4">
+                <!-- フォールバック画像 -->
+                <img src="/placeholder.svg?height=1080&width=1920" 
+                     alt="社員がダンス練習している様子" 
+                     class="w-full h-full object-cover">
+            </video>
+        </div>
+    
+        <div class="relative z-20 text-center text-white px-4 max-w-4xl mx-auto">
+            <!-- テキストを画像に置き換え -->
+            <div class="mb-8">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E5%8B%95%E7%94%BB%E7%B4%A0%E6%9D%90%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC-OXN7ohsmTgVneJMlcOfM23oQ0sw2i0.png" 
+                     alt="Baudroie Dance Club - リズムで ひとつになる 社内コミュニティ - 踊って、繋がる。" 
+                     class="mx-auto max-w-full h-auto">
+            </div>
+            <a href="#join" class="inline-block bg-baudroie-orange hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors duration-300 shadow-lg">
+                今すぐ見学予約
+            </a>
+        </div>
+    </section>
+
+    <!-- Mission/Vision Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-inter font-bold text-4xl mb-8 text-gray-900">
+                        私たちの想い
+                    </h2>
+                    <div class="mb-8">
+                        <h3 class="font-inter font-bold text-2xl mb-4 text-baudroie-orange">Mission</h3>
+                        <p class="text-lg leading-relaxed">
+                            ダンスで最高のチームワークを。音楽に合わせて体を動かすことで、普段の業務では見えない仲間の新しい一面を発見し、より深いつながりを築きます。
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="font-inter font-bold text-2xl mb-4 text-baudroie-orange">Vision</h3>
+                        <p class="text-lg leading-relaxed">
+                            ダンスを通じて心身の健康を促進し、より活気あふれる会社にします。また、ダンス文化を通じて社内外問わず、つながりを増やしていく
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="flex items-center space-x-6">
+                        <div class="w-16 h-16 bg-baudroie-orange rounded-full flex items-center justify-center">
+                            <span class="text-white text-3xl">🤝</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2">チームワーク向上</h4>
+                            <p class="text-gray-600 text-lg">部署を超えた協力関係を構築</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <div class="w-16 h-16 bg-baudroie-orange rounded-full flex items-center justify-center">
+                            <span class="text-white text-3xl">💪</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2">健康促進</h4>
+                            <p class="text-gray-600 text-lg">楽しみながら運動習慣を身につける</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <div class="w-16 h-16 bg-baudroie-orange rounded-full flex items-center justify-center">
+                            <span class="text-white text-3xl">✨</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-2">自己表現</h4>
+                            <p class="text-gray-600 text-lg">創造性と個性を発揮する場を提供</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="font-inter font-bold text-4xl text-center mb-16 text-gray-900">
+                活動内容
+            </h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
+                    <div class="w-16 h-16 bg-baudroie-orange rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <span class="text-white text-2xl">🕺</span>
+                    </div>
+                    <h3 class="font-inter font-bold text-xl mb-3 text-center">基礎レッスン</h3>
+                    <p class="text-gray-600 text-center">
+                        初心者大歓迎！基本的なステップから丁寧に指導します。経験者がサポートするので安心してご参加ください。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
+                    <div class="w-16 h-16 bg-baudroie-orange rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <span class="text-white text-2xl">🎭</span>
+                    </div>
+                    <h3 class="font-inter font-bold text-xl mb-3 text-center">発表会</h3>
+                    <p class="text-gray-600 text-center">
+                        年2回の社内発表会で練習の成果を披露。チーム一丸となって作り上げるパフォーマンスは格別の達成感です。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
+                    <div class="w-16 h-16 bg-baudroie-orange rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <span class="text-white text-2xl">🍕</span>
+                    </div>
+                    <h3 class="font-inter font-bold text-xl mb-3 text-center">懇親会</h3>
+                    <p class="text-gray-600 text-center">
+                        練習後の懇親会で親睦を深めます。美味しい食事とともに、普段話せない他部署の方との交流を楽しめます。
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
+                    <div class="w-16 h-16 bg-baudroie-orange rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <span class="text-white text-2xl">🏆</span>
+                    </div>
+                    <h3 class="font-inter font-bold text-xl mb-3 text-center">コンテスト</h3>
+                    <p class="text-gray-600 text-center">
+                        社外のダンスコンテストにも挑戦！チーム一丸となって目標に向かう過程で、絆がより深まります。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-20 bg-baudroie-orange-light">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="font-inter font-bold text-4xl text-center mb-16 text-gray-900">
+                参加するメリット
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-baudroie-orange rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="text-white text-3xl">💪</span>
+                    </div>
+                    <h3 class="font-inter font-bold text-2xl mb-4">運動不足解消</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        デスクワーク中心の生活で不足しがちな運動を、楽しみながら補えます。ダンスは全身運動なので効果的です。
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-baudroie-orange rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="text-white text-3xl">🤝</span>
+                    </div>
+                    <h3 class="font-inter font-bold text-2xl mb-4">横のつながり</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        普段関わりの少ない他部署の方々との新しいつながりが生まれ、仕事でも協力しやすい関係を築けます。
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-baudroie-orange rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <span class="text-white text-3xl">✨</span>
+                    </div>
+                    <h3 class="font-inter font-bold text-2xl mb-4">自己表現の場</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        仕事とは違った自分の一面を表現できる貴重な機会。創造性を発揮してストレス発散にもつながります。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="font-inter font-bold text-4xl text-center mb-16 text-gray-900">
+                スケジュール
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="font-inter font-bold text-2xl mb-6 text-baudroie-orange">練習カレンダー</h3>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden border">
+                        <iframe 
+                            src="https://calendar.google.com/calendar/embed?height=450&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FTokyo&src=c_bfbc88abbe029860f292ed6edda6509c294f56cb06e410597cde585140a78ec2%40group.calendar.google.com&color=%23FF7A00&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH"
+                            style="border: 0" 
+                            width="100%" 
+                            height="450" 
+                            frameborder="0" 
+                            scrolling="no">
+                        </iframe>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <a href="https://calendar.google.com/calendar/u/0?cid=c_bfbc88abbe029860f292ed6edda6509c294f56cb06e410597cde585140a78ec2@group.calendar.google.com" 
+                           target="_blank" 
+                           class="text-baudroie-orange hover:text-orange-600 font-medium">
+                            📅 Googleカレンダーで開く
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-inter font-bold text-2xl mb-6 text-baudroie-orange">次回イベントまで</h3>
+                    <div class="bg-baudroie-orange rounded-lg p-8 text-white text-center mb-6" x-data="countdown()">
+                        <div class="grid grid-cols-4 gap-4 mb-4">
+                            <div>
+                                <div class="text-3xl font-bold" x-text="days">00</div>
+                                <div class="text-sm">日</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold" x-text="hours">00</div>
+                                <div class="text-sm">時間</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold" x-text="minutes">00</div>
+                                <div class="text-sm">分</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold" x-text="seconds">00</div>
+                                <div class="text-sm">秒</div>
+                            </div>
+                        </div>
+                        <p class="text-lg font-medium" x-text="eventTitle">次回練習まで</p>
+                        <p class="text-sm opacity-90 mt-2" x-text="eventDate"></p>
+                    </div>
+                    
+                    <!-- 次回予定の詳細 -->
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h4 class="font-bold text-lg mb-4 text-gray-900">📅 次回予定</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-baudroie-orange">📍</span>
+                                <span class="text-gray-700">カチラボ</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-baudroie-orange">⏰</span>
+                                <span class="text-gray-700">18:00 - 20:00</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-baudroie-orange">👥</span>
+                                <span class="text-gray-700">初心者歓迎・見学OK</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-sm text-gray-600">
+                                持ち物：動きやすい服装、タオル、飲み物<br>
+                                更衣室利用可能
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="font-inter font-bold text-4xl text-center mb-16 text-gray-900">
+                参加者の声
+            </h2>
+            
+            <div class="relative" x-data="testimonials()">
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-500" :style="`transform: translateX(-${currentSlide * 100}%)`">
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div class="bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
+                                <div class="flex items-center mb-6">
+                                    <img src="/placeholder.svg?height=80&width=80" 
+                                         alt="田中さん" 
+                                         class="w-16 h-16 rounded-full object-cover mr-4 filter grayscale">
+                                    <div>
+                                        <h4 class="font-bold text-lg">田中 美咲さん</h4>
+                                        <p class="text-gray-600">営業部</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed italic">
+                                    「最初は恥ずかしかったですが、みんな温かく迎えてくれて今では毎週の楽しみです。他部署の方との交流も増えて、仕事でも相談しやすくなりました！」
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div class="bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
+                                <div class="flex items-center mb-6">
+                                    <img src="/placeholder.svg?height=80&width=80" 
+                                         alt="佐藤さん" 
+                                         class="w-16 h-16 rounded-full object-cover mr-4 filter grayscale">
+                                    <div>
+                                        <h4 class="font-bold text-lg">佐藤 健太さん</h4>
+                                        <p class="text-gray-600">開発部</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed italic">
+                                    「運動不足解消のつもりで始めましたが、今では発表会に向けてチーム一丸となって練習するのが何より楽しいです。達成感が半端ないです！」
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div class="bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
+                                <div class="flex items-center mb-6">
+                                    <img src="/placeholder.svg?height=80&width=80" 
+                                         alt="山田さん" 
+                                         class="w-16 h-16 rounded-full object-cover mr-4 filter grayscale">
+                                    <div>
+                                        <h4 class="font-bold text-lg">山田 由美さん</h4>
+                                        <p class="text-gray-600">人事部</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed italic">
+                                    「ダンス経験ゼロでしたが、基礎から教えてもらえるので安心でした。今では新しい振り付けを覚えるのが楽しくて、ストレス発散にもなっています！」
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-8 space-x-2">
+                    <template x-for="(slide, index) in 3" :key="index">
+                        <button 
+                            @click="currentSlide = index"
+                            :class="currentSlide === index ? 'bg-baudroie-orange' : 'bg-gray-300'"
+                            class="w-3 h-3 rounded-full transition-colors duration-300">
+                        </button>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Flow Section -->
+    <section id="join" class="py-20 bg-baudroie-orange-light">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="font-inter font-bold text-4xl text-center mb-16 text-gray-900">
+                参加までの流れ
+            </h2>
+            
+            <div class="hidden md:block">
+                <div class="flex justify-between items-center relative">
+                    <div class="absolute top-1/2 left-0 right-0 h-1 bg-baudroie-orange transform -translate-y-1/2 z-0"></div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-lg relative z-10 w-80">
+                        <div class="w-12 h-12 bg-baudroie-orange rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">1</div>
+                        <h3 class="font-inter font-bold text-xl mb-3 text-center">見学申し込み</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            まずは気軽に見学から。雰囲気を感じてみてください。
+                        </p>
+                        <button data-step="1" class="w-full bg-baudroie-orange text-white py-2 rounded hover:bg-orange-600 transition-colors">
+                            見学予約
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-lg relative z-10 w-80">
+                        <div class="w-12 h-12 bg-baudroie-orange rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">2</div>
+                        <h3 class="font-inter font-bold text-xl mb-3 text-center">体験参加</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            実際に体験してみましょう。動きやすい服装でお越しください。
+                        </p>
+                        <button data-step="2" class="w-full bg-baudroie-orange text-white py-2 rounded hover:bg-orange-600 transition-colors">
+                            体験予約
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-lg relative z-10 w-80">
+                        <div class="w-12 h-12 bg-baudroie-orange rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">3</div>
+                        <h3 class="font-inter font-bold text-xl mb-3 text-center">正式参加</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            気に入ったら正式にメンバーとして参加しましょう！
+                        </p>
+                        <button data-step="3" class="w-full bg-baudroie-orange text-white py-2 rounded hover:bg-orange-600 transition-colors">
+                            参加申し込み
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Timeline -->
+            <div class="md:hidden overflow-x-auto">
+                <div class="flex space-x-6 pb-4" style="width: 900px;">
+                    <div class="bg-white rounded-lg p-6 shadow-lg w-80 flex-shrink-0">
+                        <div class="w-12 h-12 bg-baudroie-orange rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">1</div>
+                        <h3 class="font-inter font-bold text-xl mb-3 text-center">見学申し込み</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            まずは気軽に見学から。雰囲気を感じてみてください。
+                        </p>
+                        <button data-step="1" class="w-full bg-baudroie-orange text-white py-2 rounded hover:bg-orange-600 transition-colors">
+                            見学予約
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-lg w-80 flex-shrink-0">
+                        <div class="w-12 h-12 bg-baudroie-orange rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">2</div>
+                        <h3 class="font-inter font-bold text-xl mb-3 text-center">体験参加</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            実際に体験してみましょう。動きやすい服装でお越しください。
+                        </p>
+                        <button data-step="2" class="w-full bg-baudroie-orange text-white py-2 rounded hover:bg-orange-600 transition-colors">
+                            体験予約
+                        </button>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-lg w-80 flex-shrink-0">
+                        <div class="w-12 h-12 bg-baudroie-orange rounded-full flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto">3</div>
+                        <h3 class="font-inter font-bold text-xl mb-3 text-center">正式参加</h3>
+                        <p class="text-gray-600 text-center mb-4">
+                            気に入ったら正式にメンバーとして参加しましょう！
+                        </p>
+                        <button data-step="3" class="w-full bg-baudroie-orange text-white py-2 rounded hover:bg-orange-600 transition-colors">
+                            参加申し込み
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="font-inter font-bold text-4xl text-center mb-16 text-gray-900">
+                よくある質問
+            </h2>
+            
+            <div class="space-y-4" x-data="faq()">
+                <div class="border border-gray-200 rounded-lg">
+                    <button @click="toggle(0)" 
+                            class="w-full text-left p-6 flex justify-between items-center hover:bg-gray-50">
+                        <span class="font-medium text-lg">ダンス経験がなくても参加できますか？</span>
+                        <span class="text-baudroie-orange text-xl" x-text="openItems[0] ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="openItems[0]" 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 transform -translate-y-2"
+                         x-transition:enter-end="opacity-100 transform translate-y-0"
+                         class="px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            もちろんです！参加者の約7割がダンス未経験からスタートしています。基礎から丁寧に指導しますし、経験者の方々もとても親切にサポートしてくれるので安心してご参加ください。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button @click="toggle(1)" 
+                            class="w-full text-left p-6 flex justify-between items-center hover:bg-gray-50">
+                        <span class="font-medium text-lg">参加費用はかかりますか？</span>
+                        <span class="text-baudroie-orange text-xl" x-text="openItems[1] ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="openItems[1]" 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 transform -translate-y-2"
+                         x-transition:enter-end="opacity-100 transform translate-y-0"
+                         class="px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            基本的な練習は無料です。（※別途かかる場合は随時連絡いたします）
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button @click="toggle(2)" 
+                            class="w-full text-left p-6 flex justify-between items-center hover:bg-gray-50">
+                        <span class="font-medium text-lg">どのような服装で参加すればよいですか？</span>
+                        <span class="text-baudroie-orange text-xl" x-text="openItems[2] ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="openItems[2]" 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 transform -translate-y-2"
+                         x-transition:enter-end="opacity-100 transform translate-y-0"
+                         class="px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            動きやすい服装であれば何でもOKです。Tシャツ・ジャージ・スニーカーなど、運動できる格好でお越しください。更衣室もご利用いただけます。
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg">
+                    <button @click="toggle(3)" 
+                            class="w-full text-left p-6 flex justify-between items-center hover:bg-gray-50">
+                        <span class="font-medium text-lg">忙しくて毎回参加できないのですが...</span>
+                        <span class="text-baudroie-orange text-xl" x-text="openItems[3] ? '−' : '+'"></span>
+                    </button>
+                    <div x-show="openItems[3]" 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 transform -translate-y-2"
+                         x-transition:enter-end="opacity-100 transform translate-y-0"
+                         class="px-6 pb-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            全く問題ありません！参加は自由で、都合の良い時だけの参加でも大歓迎です。気軽にお越しください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing CTA Section -->
+    <section class="py-20 bg-baudroie-orange text-white">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="font-inter font-bold text-5xl mb-8">
+                さぁ、一緒に踊ろう！
+            </h2>
+            <p class="text-xl mb-12 leading-relaxed">
+                新しい仲間との出会いと、音楽に合わせて体を動かす楽しさが待っています。<br>
+                まずは気軽に見学から始めてみませんか？
+            </p>
+            
+            <div class="flex justify-center">
+                <a href="#join" 
+                   class="bg-white text-baudroie-orange font-bold py-4 px-8 rounded-lg text-lg hover:bg-gray-100 transition-colors duration-300 shadow-lg">
+                    見学申し込み
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center">
+                <!-- フッターロゴ画像を中央配置 -->
+                <div class="mb-6">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E5%8B%95%E7%94%BB%E7%B4%A0%E6%9D%90%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC-1HEOSdvO2s0c8mJtJEz20mJTfIqxI4.png" 
+                         alt="Baudroie Dance Club - リズムで ひとつになる 社内コミュニティ - 踊って、繋がる。" 
+                         class="mx-auto max-w-md h-auto">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-noto {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar for mobile timeline */
+        .overflow-x-auto::-webkit-scrollbar {
+            height: 6px;
+        }
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background: #FF7A00;
+            border-radius: 3px;
+        }
+
+        /* 動画の最適化 */
+        video {
+            object-position: center;
+        }
+
+        /* モバイルでの動画制御 */
+        @media (max-width: 768px) {
+            video {
+                object-position: center top;
+            }
+        }
+
+        /* 動画読み込み中のスタイル */
+        video:not([src]) {
+            background: url('/placeholder.svg?height=1080&width=1920') center/cover;
+        }
+        
+        /* 動画のパフォーマンス最適化 */
+        @media (prefers-reduced-motion: reduce) {
+            video {
+                display: none;
+            }
+            .video-fallback {
+                display: block;
+            }
+        }
+    </style>
+
+    <script>
+        // 次回イベントの設定（カレンダーから取得した情報を基に設定）
+        const upcomingEvents = [
+            {
+                title: "ダンス練習",
+                date: new Date(2025, 5, 14, 18, 0), // 2025年6月14日 18:00
+                dateString: "6月14日（土）18:00"
+            },
+            {
+                title: "ダンス練習", 
+                date: new Date(2025, 5, 28, 18, 0), // 2025年6月28日 18:00
+                dateString: "6月28日（土）18:00"
+            }
+        ];
+
+        // Countdown Timer
+        function countdown() {
+            return {
+                days: '00',
+                hours: '00',
+                minutes: '00',
+                seconds: '00',
+                eventTitle: '次回練習まで',
+                eventDate: '',
+                
+                init() {
+                    this.findNextEvent();
+                    setInterval(() => this.updateCountdown(), 1000);
+                },
+                
+                findNextEvent() {
+                    const now = new Date();
+                    let nextEvent = null;
+                    
+                    // 次回のイベントを見つける
+                    for (let event of upcomingEvents) {
+                        if (event.date > now) {
+                            nextEvent = event;
+                            break;
+                        }
+                    }
+                    
+                    if (nextEvent) {
+                        this.targetDate = nextEvent.date;
+                        this.eventTitle = `${nextEvent.title}まで`;
+                        this.eventDate = nextEvent.dateString;
+                    } else {
+                        // 次回イベントが見つからない場合のデフォルト
+                        this.targetDate = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 1週間後
+                        this.eventTitle = '次回練習まで';
+                        this.eventDate = 'スケジュール確認中';
+                    }
+                    
+                    this.updateCountdown();
+                },
+                
+                updateCountdown() {
+                    if (!this.targetDate) return;
+                    
+                    const now = new Date().getTime();
+                    const distance = this.targetDate.getTime() - now;
+                    
+                    if (distance > 0) {
+                        this.days = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                        this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                        this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                        this.seconds = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+                    } else {
+                        // イベントが過ぎた場合、次のイベントを探す
+                        this.findNextEvent();
+                    }
+                }
+            }
+        }
+        
+        // Testimonials Slider
+        function testimonials() {
+            return {
+                currentSlide: 0,
+                
+                init() {
+                    setInterval(() => {
+                        this.currentSlide = (this.currentSlide + 1) % 3;
+                    }, 3000);
+                }
+            }
+        }
+        
+        // FAQ Accordion
+        function faq() {
+            return {
+                openItems: [true, false, false, false],
+                
+                toggle(index) {
+                    this.openItems[index] = !this.openItems[index];
+                }
+            }
+        }
+    </script>
+</body>
+</html>
