@@ -18,6 +18,9 @@
     <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
+    <!-- Google Calendar API -->
+    <script src="https://apis.google.com/js/api.js"></script>
+    
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
@@ -178,6 +181,132 @@
         </div>
     </section>
 
+    <!-- Activities Gallery Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="font-inter font-bold text-4xl text-center mb-16 text-gray-900">
+                活動の様子
+            </h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- 左側：動画 -->
+                <div class="relative">
+                    <div class="rounded-lg overflow-hidden shadow-lg">
+                        <video 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline
+                            class="w-full h-96 object-cover"
+                            poster="/placeholder.svg?height=400&width=600">
+                            <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E5%8B%95%E7%94%BB%E7%B4%A0%E6%9D%90%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC%20%282%29-A2MxCBKL4VXWqeiCYnUFa3S4LiAUOa.mp4" type="video/mp4">
+                            <!-- フォールバック画像 -->
+                            <img src="/placeholder.svg?height=400&width=600" 
+                                 alt="ダンス練習の様子" 
+                                 class="w-full h-auto object-cover">
+                        </video>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <p class="text-gray-600 text-sm">練習風景の動画</p>
+                    </div>
+                </div>
+                
+                <!-- 右側：画像スライダー -->
+                <div class="relative" x-data="activityGallery()">
+                    <div class="rounded-lg overflow-hidden shadow-lg bg-gray-100">
+                        <div class="relative h-96">
+                            <!-- 画像1 -->
+                            <div x-show="currentSlide === 0" 
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="transition ease-in duration-300"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0"
+                                 class="absolute inset-0">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__12902434.jpg-8KqQHgCwCIenecoB27mRUZGOeDjhFJ.jpeg" 
+                                     alt="ダンス練習の様子1" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            
+                            <!-- 画像2 -->
+                            <div x-show="currentSlide === 1" 
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="transition ease-in duration-300"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0"
+                                 class="absolute inset-0">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__12902435.jpg-p7QO0iFxKko0XUPGi1uw2If2tNE8Ew.jpeg" 
+                                     alt="ダンス練習の様子2" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            
+                            <!-- 画像3 -->
+                            <div x-show="currentSlide === 2" 
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="transition ease-in duration-300"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0"
+                                 class="absolute inset-0">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/S__12902433.jpg-BW2qlMAWR1GjUwLqT2AWN8pMFS3xQe.jpeg" 
+                                     alt="ダンス練習の様子3" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            
+                            <!-- 画像4 -->
+                            <div x-show="currentSlide === 3" 
+                                 x-transition:enter="transition ease-out duration-300"
+                                 x-transition:enter-start="opacity-0"
+                                 x-transition:enter-end="opacity-100"
+                                 x-transition:leave="transition ease-in duration-300"
+                                 x-transition:leave-start="opacity-100"
+                                 x-transition:leave-end="opacity-0"
+                                 class="absolute inset-0">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CC5EBF28-5FE7-45EF-A7DE-E0CCB3FF5A0C.jpg-PyhkmBPiaRDH67mj5Faqae1KrBmtcK.jpeg" 
+                                     alt="発表会の様子" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            
+                            <!-- ナビゲーションボタン -->
+                            <button @click="previousSlide()" 
+                                    class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                            </button>
+                            
+                            <button @click="nextSlide()" 
+                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- インジケーター -->
+                    <div class="flex justify-center mt-4 space-x-2">
+                        <template x-for="(slide, index) in 4" :key="index">
+                            <button 
+                                @click="currentSlide = index"
+                                :class="currentSlide === index ? 'bg-baudroie-orange' : 'bg-gray-300'"
+                                class="w-3 h-3 rounded-full transition-colors duration-300">
+                            </button>
+                        </template>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-gray-600 text-sm">練習・発表会の写真</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Benefits Section -->
     <section class="py-20 bg-baudroie-orange-light">
         <div class="container mx-auto px-4 max-w-6xl">
@@ -274,12 +403,30 @@
                     </div>
                     
                     <!-- 次回予定の詳細 -->
-                    <div class="bg-gray-50 rounded-lg p-6">
-                        <h4 class="font-bold text-lg mb-4 text-gray-900">📅 次回予定</h4>
-                        <div class="space-y-3">
+                    <div class="bg-gray-50 rounded-lg p-6" x-data="nextEventDetails()">
+                        <h4 class="font-bold text-lg mb-4 text-gray-900" x-text="eventTitle">📅 次回予定</h4>
+                        <div class="space-y-3" x-show="eventLoaded">
+                            <div class="flex items-center space-x-3" x-show="location">
+                                <span class="text-baudroie-orange">📍</span>
+                                <span class="text-gray-700" x-text="location"></span>
+                            </div>
+                            <div class="flex items-center space-x-3" x-show="timeRange">
+                                <span class="text-baudroie-orange">⏰</span>
+                                <span class="text-gray-700" x-text="timeRange"></span>
+                            </div>
+                            <div class="flex items-center space-x-3" x-show="participants">
+                                <span class="text-baudroie-orange">👥</span>
+                                <span class="text-gray-700" x-text="participants"></span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-200" x-show="description">
+                            <p class="text-sm text-gray-600" x-html="description"></p>
+                        </div>
+                        <!-- フォールバック表示 -->
+                        <div x-show="!eventLoaded" class="space-y-3">
                             <div class="flex items-center space-x-3">
                                 <span class="text-baudroie-orange">📍</span>
-                                <span class="text-gray-700">カチラボ</span>
+                                <span class="text-gray-700">ガチラボ</span>
                             </div>
                             <div class="flex items-center space-x-3">
                                 <span class="text-baudroie-orange">⏰</span>
@@ -289,12 +436,12 @@
                                 <span class="text-baudroie-orange">👥</span>
                                 <span class="text-gray-700">初心者歓迎・見学OK</span>
                             </div>
-                        </div>
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <p class="text-sm text-gray-600">
-                                持ち物：動きやすい服装、タオル、飲み物<br>
-                                更衣室利用可能
-                            </p>
+                            <div class="mt-4 pt-4 border-t border-gray-200">
+                                <p class="text-sm text-gray-600">
+                                    持ち物：動きやすい服装、タオル、飲み物<br>
+                                    更衣室利用可能
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -315,16 +462,16 @@
                         <div class="w-full flex-shrink-0 px-4">
                             <div class="bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
                                 <div class="flex items-center mb-6">
-                                    <img src="/placeholder.svg?height=80&width=80" 
-                                         alt="田中さん" 
-                                         class="w-16 h-16 rounded-full object-cover mr-4 filter grayscale">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/KM-PPCkgD4JLs6zFKFxjGgHMrIuQbr3Oc.png" 
+                                         alt="KMさん" 
+                                         class="w-16 h-16 rounded-full object-cover mr-4">
                                     <div>
-                                        <h4 class="font-bold text-lg">田中 美咲さん</h4>
-                                        <p class="text-gray-600">営業部</p>
+                                        <h4 class="font-bold text-lg">KMさん</h4>
+                                        <p class="text-gray-600">技術部/入社8年目（経験者・10年）</p>
                                     </div>
                                 </div>
                                 <p class="text-gray-700 leading-relaxed italic">
-                                    「最初は恥ずかしかったですが、みんな温かく迎えてくれて今では毎週の楽しみです。他部署の方との交流も増えて、仕事でも相談しやすくなりました！」
+                                    「ダンスシーンで踊ってきた私でも、社内でここまで本格的に練習できるとは思いませんでした。部署を超えてコラボする振付づくりは、普段のプロジェクトにも良い刺激。『仕事⇄趣味』の循環が出来て、パフォーマンスも上がりました！踊れるエンジニアとしてこれからも頑張ります！」
                                 </p>
                             </div>
                         </div>
@@ -332,16 +479,16 @@
                         <div class="w-full flex-shrink-0 px-4">
                             <div class="bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
                                 <div class="flex items-center mb-6">
-                                    <img src="/placeholder.svg?height=80&width=80" 
-                                         alt="佐藤さん" 
-                                         class="w-16 h-16 rounded-full object-cover mr-4 filter grayscale">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MM-Wy3SjpoYq4I156AoeUkequVMKwJvcM.png" 
+                                         alt="MMさん" 
+                                         class="w-16 h-16 rounded-full object-cover mr-4">
                                     <div>
-                                        <h4 class="font-bold text-lg">佐藤 健太さん</h4>
-                                        <p class="text-gray-600">開発部</p>
+                                        <h4 class="font-bold text-lg">MMさん</h4>
+                                        <p class="text-gray-600">技術部/入社2年目（ビギナー→中級・1年）</p>
                                     </div>
                                 </div>
                                 <p class="text-gray-700 leading-relaxed italic">
-                                    「運動不足解消のつもりで始めましたが、今では発表会に向けてチーム一丸となって練習するのが何より楽しいです。達成感が半端ないです！」
+                                    「入部当初はリズムどころかストレッチで筋肉痛（笑）。でも先輩が基礎ステップを分解して教えてくれたおかげで、今ではイベントのショーケースに立てるまでに成長！プレゼンでも"見せ方"に自信が付きました。」
                                 </p>
                             </div>
                         </div>
@@ -349,16 +496,16 @@
                         <div class="w-full flex-shrink-0 px-4">
                             <div class="bg-white rounded-lg p-8 shadow-lg max-w-2xl mx-auto">
                                 <div class="flex items-center mb-6">
-                                    <img src="/placeholder.svg?height=80&width=80" 
-                                         alt="山田さん" 
-                                         class="w-16 h-16 rounded-full object-cover mr-4 filter grayscale">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AS-OOc1VfFKjwbPE88CCctrM2TuT9c1L5.png" 
+                                         alt="ASさん" 
+                                         class="w-16 h-16 rounded-full object-cover mr-4">
                                     <div>
-                                        <h4 class="font-bold text-lg">山田 由美さん</h4>
-                                        <p class="text-gray-600">人事部</p>
+                                        <h4 class="font-bold text-lg">ASさん</h4>
+                                        <p class="text-gray-600">営業部/24年4月入社（完全初心者・0年）</p>
                                     </div>
                                 </div>
                                 <p class="text-gray-700 leading-relaxed italic">
-                                    「ダンス経験ゼロでしたが、基礎から教えてもらえるので安心でした。今では新しい振り付けを覚えるのが楽しくて、ストレス発散にもなっています！」
+                                    「ダンスは体育の授業以来。でも"見学だけOK"の雰囲気に背中を押され参加したら、一体感と達成感が想像以上！仕事以外の話題で先輩と盛り上がれるので、部署を超えて早くも会社に馴染めています。」
                                 </p>
                             </div>
                         </div>
@@ -543,6 +690,127 @@
         </div>
     </section>
 
+    <!-- Contest Announcement Section -->
+    <section id="contest" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2 class="font-inter font-bold text-4xl text-gray-900">B2D Business to Dance</h2>
+          <p class="text-gray-500 mt-2">presented by baudroie inc.</p>
+          <p class="text-baudroie-orange font-bold text-xl mt-4">BaudroieDanceClub企業対抗コンテストに出ます！！</p>
+        </div>
+
+        <!-- 開催概要 -->
+        <div class="bg-white rounded-xl shadow-lg p-8 border mb-8">
+          <!-- タイトルを一番上に配置 -->
+          <h3 class="font-inter font-bold text-2xl text-baudroie-orange mb-8">開催概要</h3>
+          
+          <!-- 日程・会場・時間と申し込みボタンを左右分割 -->
+          <div class="grid lg:grid-cols-2 gap-8 items-start">
+            <!-- 左側：日程・会場・時間 -->
+            <div class="flex flex-col justify-center h-full space-y-6 lg:space-y-8">
+              <div>
+                <p class="text-gray-900 font-bold text-lg lg:text-xl mb-2">DATE</p>
+                <p class="text-baudroie-orange font-bold text-2xl lg:text-3xl">2025/08/30(SAT)</p>
+              </div>
+              <div>
+                <p class="text-gray-900 font-bold text-lg lg:text-xl mb-2">OPEN</p>
+                <p class="text-baudroie-orange font-bold text-2xl lg:text-3xl">13:00~</p>
+              </div>
+              <div>
+                <p class="text-gray-900 font-bold text-lg lg:text-xl mb-2">VENUE</p>
+                <a href="https://maps.app.goo.gl/oPXZTfSx4D42BbJD7" target="_blank" class="hover:opacity-80 transition-opacity">
+                  <p class="text-baudroie-orange font-bold text-2xl lg:text-3xl">下北沢ADRIFT</p>
+                  <p class="text-baudroie-orange text-base lg:text-lg mt-1">東京都世田谷区北沢3丁目9-23</p>
+                </a>
+              </div>
+            </div>
+            
+            <!-- 右側：申し込みボタン -->
+            <div class="text-center">
+              <img src="B2Dロゴ.png" alt="B2D Business to Dance ロゴ" class="w-full max-w-md mx-auto mb-6">
+              <a href="https://line.me/ti/g2/EojzRomZps4wx25R609xUlSzv0C_P5g5pQoabA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" class="inline-block bg-baudroie-orange hover:bg-orange-600 text-white font-bold py-3 lg:py-4 px-6 lg:px-8 rounded-lg transition-colors duration-300 shadow-lg text-base lg:text-lg w-full max-w-md">
+                応援に行く！！
+              </a>
+              <div class="mt-4">
+                <p class="text-gray-600 text-xs lg:text-sm">LINE 特設オープンチャットへ移動します。</p>
+                <p class="text-baudroie-orange font-bold text-xs lg:text-sm">PASS: baudroie</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Googleマップ -->
+          <div class="mt-8">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.5304523131126!2d139.6707674!3d35.6639386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018f3919f8014e9%3A0xb8be83d48a9d3477!2sADRIFT!5e0!3m2!1sja!2sjp!4v1755148469056!5m2!1sja!2sjp"
+                width="100%" 
+                height="300" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                class="w-full h-64 md:h-80">
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- 出場メンバー紹介（18名想定／Alpineで差し替えやすく） -->
+        <div
+          class="bg-white rounded-xl shadow-lg p-8 border"
+                      x-data='{
+              planned: 18,          // 出場予定人数
+              members: [
+                { name: "菅田裕惟", nickname: "ゆいぴー", role: "第2技術部　BDC長", bio: "出だしからセクシー全開で始まるので、大きな声援お願いします☺☺", img: "菅田裕惟.jpg" },
+                { name: "町田和真", nickname: "まっち", role: "第2技術部 副部長", bio: "みんなででボド魂炸裂させましょう！", img: "町田和真.jpg" },
+                { name: "東谷次朗", nickname: "つぐ", role: "事業統括本部", bio: "フィジカルで、プリミティブで、フェティッシュなやり方でいかせていただきます、押忍", img: "東谷次朗.jpg" },
+                { name: "陳治和", nickname: "ちん", role: "第2技術部", bio: "タオルは何枚あってもいい", img: "陳治和.jpg" },
+                { name: "足立和夏", nickname: "のどか！", role: "第1技術部", bio: "全開放して楽しみます😆", img: "足立和夏.jpg" },
+                { name: "佐藤杏菜", nickname: "あんこ", role: "営業部", bio: "頑張ります☆", img: "佐藤杏菜.jpg" },
+                { name: "岡本陽向", nickname: "ひなてゃ、ひなち", role: "経営管理本部", bio: "がんばってます！", img: "岡本陽向.jpg" },
+                { name: "村松舞子", nickname: "まいまい、まいこ", role: "営業部", bio: "がんばります", img: "村松舞子.jpg" },
+                { name: "村田優太", nickname: "ゆうた", role: "第6技術部", bio: "盛り上がっていきましょう！", img: "村田優太.jpg" },
+                { name: "仁藤陸", nickname: "にとり", role: "第2技術部", bio: "ブレイクかますので応援お願いします！", img: "仁藤陸.jpg" },
+                { name: "元山公貴", nickname: "ヤン、元やん", role: "第4技術部", bio: "かまします！", img: "元山公貴.jpg" },
+                { name: "島崎尋睦", nickname: "ざっきー", role: "第3技術部", bio: "一生懸命がんばります！", img: "島崎尋睦.jpg" },
+                { name: "池田優佳", nickname: "いけでぃー", role: "第4技術部", bio: "6年ぶりに踊ります！いっぱい名前呼んでください", img: "池田優佳.jpg" },
+                { name: "鈴木彩芽", nickname: "あやめ、めんめん", role: "第1技術部", bio: "lock頑張ります〜〜", img: "鈴木彩芽.jpg" },
+                { name: "福田空", nickname: "そら", role: "第四技術部", bio: "ポップ頑張ります〜！！", img: "福田空.jpg" },
+                { name: "三島 大海", nickname: "ひろみ", role: "第四技術部", bio: "ばちばち", img: "三島大海.jpg" }
+              ],
+              get displayMembers () {
+                return this.members;
+              }
+            }'
+        >
+          <div class="flex items-end justify-between mb-4">
+            <h3 class="font-inter font-bold text-2xl text-baudroie-orange">
+              Baudroie Dance Club 出場メンバー
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <template x-for="(m, i) in displayMembers" :key="m.name + i">
+                              <div
+                  class="flex items-start space-x-4"
+                >
+                <img :src="m.img" :alt="(m.name || 'メンバー') + 'の写真'"
+                     class="w-20 h-20 rounded-lg object-cover flex-shrink-0" />
+                <div>
+                  <p class="font-bold text-lg" x-text="m.name || 'メンバー名'"></p>
+                  <p class="text-sm text-baudroie-orange font-medium" x-show="m.nickname" x-text="'(' + m.nickname + ')'"></p>
+                  <p class="text-sm text-gray-500" x-show="m.role" x-text="m.role"></p>
+                  <p class="mt-1 text-gray-700 text-sm leading-relaxed" x-text="m.bio"></p>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          
+        </div>
+      </div>
+    </section>
+
     <!-- Closing CTA Section -->
     <section class="py-20 bg-baudroie-orange text-white">
         <div class="container mx-auto px-4 max-w-4xl text-center">
@@ -632,7 +900,11 @@
     </style>
 
     <script>
-        // 次回イベントの設定（カレンダーから取得した情報を基に設定）
+        // Google Calendar API設定
+        const CALENDAR_ID = 'c_bfbc88abbe029860f292ed6edda6509c294f56cb06e410597cde585140a78ec2@group.calendar.google.com';
+        const API_KEY = 'YOUR_API_KEY'; // 実際のAPIキーに置き換えてください
+        
+        // 次回イベントの設定（フォールバック用）
         const upcomingEvents = [
             {
                 title: "ダンス練習",
@@ -646,6 +918,74 @@
             }
         ];
 
+        // Google Calendar APIからイベント情報を取得
+        async function fetchCalendarEvents() {
+            try {
+                const now = new Date().toISOString();
+                const response = await fetch(
+                    `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${now}&maxResults=10&singleEvents=true&orderBy=startTime`
+                );
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    return data.items || [];
+                }
+            } catch (error) {
+                console.log('Calendar API fetch failed, using fallback data');
+            }
+            return null;
+        }
+
+        // イベント詳細を解析
+        function parseEventDetails(event) {
+            const details = {
+                title: event.summary || '次回予定',
+                location: '',
+                timeRange: '',
+                participants: '',
+                description: ''
+            };
+
+            // 場所の抽出
+            if (event.location) {
+                details.location = event.location;
+            }
+
+            // 時間の抽出
+            if (event.start && event.end) {
+                const startTime = new Date(event.start.dateTime || event.start.date);
+                const endTime = new Date(event.end.dateTime || event.end.date);
+                details.timeRange = `${startTime.getHours()}:${startTime.getMinutes().toString().padStart(2, '0')} - ${endTime.getHours()}:${endTime.getMinutes().toString().padStart(2, '0')}`;
+            }
+
+            // 備考欄の解析
+            if (event.description) {
+                const description = event.description;
+                
+                // 場所の抽出（備考欄から）
+                const locationMatch = description.match(/📍\s*(.+)/);
+                if (locationMatch) {
+                    details.location = locationMatch[1].trim();
+                }
+
+                // 参加者情報の抽出
+                const participantsMatch = description.match(/👥\s*(.+)/);
+                if (participantsMatch) {
+                    details.participants = participantsMatch[1].trim();
+                }
+
+                // その他の情報を整形
+                details.description = description
+                    .replace(/📍\s*.+/g, '')
+                    .replace(/⏰\s*.+/g, '')
+                    .replace(/👥\s*.+/g, '')
+                    .trim()
+                    .replace(/\n/g, '<br>');
+            }
+
+            return details;
+        }
+
         // Countdown Timer
         function countdown() {
             return {
@@ -656,20 +996,44 @@
                 eventTitle: '次回練習まで',
                 eventDate: '',
                 
-                init() {
-                    this.findNextEvent();
+                async init() {
+                    await this.findNextEvent();
                     setInterval(() => this.updateCountdown(), 1000);
                 },
                 
-                findNextEvent() {
+                async findNextEvent() {
                     const now = new Date();
                     let nextEvent = null;
                     
-                    // 次回のイベントを見つける
-                    for (let event of upcomingEvents) {
-                        if (event.date > now) {
-                            nextEvent = event;
-                            break;
+                    // Google Calendar APIからイベントを取得
+                    const calendarEvents = await fetchCalendarEvents();
+                    
+                    if (calendarEvents && calendarEvents.length > 0) {
+                        // APIから取得したイベントを使用
+                        for (let event of calendarEvents) {
+                            const eventDate = new Date(event.start.dateTime || event.start.date);
+                            if (eventDate > now) {
+                                nextEvent = {
+                                    title: event.summary || 'ダンス練習',
+                                    date: eventDate,
+                                    dateString: eventDate.toLocaleDateString('ja-JP', {
+                                        month: 'long',
+                                        day: 'numeric',
+                                        weekday: 'short',
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    })
+                                };
+                                break;
+                            }
+                        }
+                    } else {
+                        // フォールバックデータを使用
+                        for (let event of upcomingEvents) {
+                            if (event.date > now) {
+                                nextEvent = event;
+                                break;
+                            }
                         }
                     }
                     
@@ -705,6 +1069,44 @@
                 }
             }
         }
+
+        // 次回イベント詳細
+        function nextEventDetails() {
+            return {
+                eventTitle: '📅 次回予定',
+                location: '',
+                timeRange: '',
+                participants: '',
+                description: '',
+                eventLoaded: false,
+                
+                async init() {
+                    await this.loadEventDetails();
+                },
+                
+                async loadEventDetails() {
+                    const now = new Date();
+                    const calendarEvents = await fetchCalendarEvents();
+                    
+                    if (calendarEvents && calendarEvents.length > 0) {
+                        // 次回のイベントを見つける
+                        for (let event of calendarEvents) {
+                            const eventDate = new Date(event.start.dateTime || event.start.date);
+                            if (eventDate > now) {
+                                const details = parseEventDetails(event);
+                                this.eventTitle = `📅 ${details.title}`;
+                                this.location = details.location;
+                                this.timeRange = details.timeRange;
+                                this.participants = details.participants;
+                                this.description = details.description;
+                                this.eventLoaded = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         
         // Testimonials Slider
         function testimonials() {
@@ -726,6 +1128,28 @@
                 
                 toggle(index) {
                     this.openItems[index] = !this.openItems[index];
+                }
+            }
+        }
+
+        // Activity Gallery Slider
+        function activityGallery() {
+            return {
+                currentSlide: 0,
+                
+                init() {
+                    // 自動スライド（5秒間隔）
+                    setInterval(() => {
+                        this.nextSlide();
+                    }, 5000);
+                },
+                
+                nextSlide() {
+                    this.currentSlide = (this.currentSlide + 1) % 4;
+                },
+                
+                previousSlide() {
+                    this.currentSlide = this.currentSlide === 0 ? 3 : this.currentSlide - 1;
                 }
             }
         }
